@@ -1,0 +1,100 @@
+﻿<Window x:Class="KeyClickCounter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding StatusText}"
+        Width="1240" Height="780"
+        MinWidth="920" MinHeight="640"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource WindowBgBrush}"
+        Topmost="{Binding IsTopmost, Mode=TwoWay}">
+
+    <Grid Margin="20,14,20,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- 工具栏 -->
+        <DockPanel Grid.Row="0" LastChildFill="True">
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                <Button Content="重置统计" Command="{Binding ResetCommand}" Style="{StaticResource ToolButtonStyle}"/>
+                <Button Content="隐藏到托盘" Click="HideToTray_Click" Style="{StaticResource ToolButtonStyle}"/>
+                <ToggleButton Content="窗口置顶" IsChecked="{Binding IsTopmost, Mode=TwoWay}" Style="{StaticResource ToolToggleStyle}"/>
+                <ToggleButton Content="深色皮肤" Style="{StaticResource ToolToggleStyle}" IsChecked="{Binding IsDarkTheme, Mode=TwoWay}" ToolTip="勾选=深色皮肤，取消=浅色皮肤"/>
+                <TextBlock Text="px/cm:" VerticalAlignment="Center" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="6,0,4,0"/>
+                <TextBox Width="56" VerticalContentAlignment="Center" FontSize="12" Padding="4,2"
+                         Background="{DynamicResource ToolBgBrush}" Foreground="{DynamicResource KeyTextBrush}" BorderBrush="{DynamicResource ToolBorderBrush}"
+                         ToolTip="像素/厘米换算系数，可按显示器实际 DPI 校准"
+                         Text="{Binding PxPerCm, UpdateSourceTrigger=PropertyChanged, StringFormat=0.#}"/>
+                <TextBlock Text="范围:" VerticalAlignment="Center" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="12,0,4,0"/>
+                <DatePicker Width="112" FontSize="12" VerticalAlignment="Center" Padding="4,2"
+                            ToolTip="统计起始日期（默认：首次启动统计日期）"
+                            SelectedDate="{Binding RangeStart, Mode=TwoWay}"
+                            Background="{DynamicResource ToolBgBrush}" Foreground="{DynamicResource KeyTextBrush}"
+                            BorderBrush="{DynamicResource ToolBorderBrush}"/>
+                <TextBlock Text="至" VerticalAlignment="Center" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="4,0"/>
+                <DatePicker Width="112" FontSize="12" VerticalAlignment="Center" Padding="4,2"
+                            ToolTip="统计结束日期（默认：今天）"
+                            SelectedDate="{Binding RangeEnd, Mode=TwoWay}"
+                            Background="{DynamicResource ToolBgBrush}" Foreground="{DynamicResource KeyTextBrush}"
+                            BorderBrush="{DynamicResource ToolBorderBrush}"/>
+                <Button Content="默认范围" Command="{Binding DefaultRangeCommand}" Style="{StaticResource ToolButtonStyle}"
+                        ToolTip="恢复为：首次启动日期 ~ 今天"/>
+            </StackPanel>
+            <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"
+                       Text="最小化 / 关闭窗口会缩到托盘 · 双击托盘图标恢复"
+                       Foreground="{DynamicResource HintTextBrush}" FontSize="12"/>
+        </DockPanel>
+
+        <!-- 可视化键盘：Grid 行约束保证 Viewbox 按窗口宽度完整缩放（含小键盘区） -->
+        <Viewbox Grid.Row="1" Stretch="Uniform" Margin="0,8,0,4">
+            <ItemsControl ItemsSource="{Binding Keys}"
+                          Width="{Binding KeyboardWidth}" Height="{Binding KeyboardHeight}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemContainerStyle>
+                    <Style TargetType="ContentPresenter">
+                        <Setter Property="Canvas.Left" Value="{Binding X}"/>
+                        <Setter Property="Canvas.Top" Value="{Binding Y}"/>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
+            </ItemsControl>
+        </Viewbox>
+
+        <!-- 鼠标按键（含滚轮卡片） -->
+        <StackPanel Grid.Row="2" Margin="2,4,2,0">
+            <TextBlock Text="鼠标按键" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="0,0,0,6"/>
+            <Viewbox Stretch="Uniform" StretchDirection="DownOnly" MaxHeight="72"
+                     HorizontalAlignment="Center">
+                <ItemsControl ItemsSource="{Binding MouseKeys}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="Margin" Value="0,0,10,0"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+            </Viewbox>
+        </StackPanel>
+
+        <!-- 状态栏：按键合计 + 滚轮/距离实时数据 -->
+        <Border Grid.Row="3" Background="{DynamicResource PanelBgBrush}" CornerRadius="6" Padding="12,7" Margin="0,12,0,0">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="● " Foreground="{DynamicResource AccentBrush}" FontSize="12.5"/>
+                    <TextBlock Text="{Binding StatusText}" Foreground="{DynamicResource StatusTextBrush}" FontSize="12.5"/>
+                </StackPanel>
+                <TextBlock Text="{Binding LiveStatsText}" Foreground="{DynamicResource StatusTextBrush}" FontSize="12.5" Margin="14,2,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="ThemeName">Light</sys:String>
+
+    <SolidColorBrush x:Key="WindowBgBrush" Color="#F5F6F8"/>
+    <SolidColorBrush x:Key="PanelBgBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="KeyBgBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="KeyFlashBrush" Color="#2E7DFF"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="#2E7DFF"/>
+    <SolidColorBrush x:Key="KeyBorderBrush" Color="#D8DCE3"/>
+    <SolidColorBrush x:Key="KeyTextBrush" Color="#2A2F3A"/>
+    <SolidColorBrush x:Key="KeyCountBrush" Color="#1D6FE0"/>
+    <SolidColorBrush x:Key="KeyDimBrush" Color="#8A92A3"/>
+    <SolidColorBrush x:Key="ToolBgBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="ToolBorderBrush" Color="#D8DCE3"/>
+    <SolidColorBrush x:Key="StatusTextBrush" Color="#5A6172"/>
+    <SolidColorBrush x:Key="HintTextBrush" Color="#8A92A3"/>
+    <SolidColorBrush x:Key="TitleBgBrush" Color="#F5F6F8"/>
+    <SolidColorBrush x:Key="TitleTextBrush" Color="#2A2F3A"/>
+
+    <!-- DatePicker：浅色适配（输入框 + 日历弹层统一走主题色） -->
+    <Style TargetType="DatePicker">
+        <Setter Property="Background" Value="{DynamicResource ToolBgBrush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource KeyTextBrush}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource ToolBorderBrush}"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="Padding" Value="4,2"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="CalendarStyle">
+            <Setter.Value>
+                <Style TargetType="Calendar">
+                    <Setter Property="Background" Value="{DynamicResource PanelBgBrush}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource KeyTextBrush}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource ToolBorderBrush}"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

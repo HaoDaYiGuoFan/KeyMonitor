@@ -1,0 +1,31 @@
+# ========== .NET 构建输出 ==========
+# 忽略所有 bin / obj（主项目与测试项目）
+**/bin/
+**/obj/
+
+# 发布输出
+**/publish/
+
+# ========== Visual Studio / IDE ==========
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# 测试结果
+TestResults/
+
+# ========== 日志 / 临时文件 ==========
+*.log
+*.tmp
+*.bak
+
+# ========== 其他 ==========
+# 打包产物
+*.nupkg
+*.snupkg
+
+# 操作系统文件
+Thumbs.db
+Desktop.ini

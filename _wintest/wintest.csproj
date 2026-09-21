@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KeyClickCounter\KeyClickCounter.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- MainWindow.ApplyTheme() loads "Themes/Dark.xaml" / "Themes/Light.xaml" with a RELATIVE URI,
+         which resolves against the entry assembly (this test project). Compile copies so it works. -->
+    <Page Include="..\KeyClickCounter\Themes\Dark.xaml">
+      <Link>Themes\Dark.xaml</Link>
+    </Page>
+    <Page Include="..\KeyClickCounter\Themes\Light.xaml">
+      <Link>Themes\Light.xaml</Link>
+    </Page>
+  </ItemGroup>
+
+</Project>

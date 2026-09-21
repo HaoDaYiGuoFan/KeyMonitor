@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KeyClickCounter — 键盘鼠标按键统计工具 · 项目总览</title>
+<style>
+  :root{
+    --bg:#0f1116; --ink:#e8ebf2; --ink-dim:#9aa3b5; --ink-faint:#6b7385;
+    --hair:rgba(255,255,255,.08); --hair-strong:rgba(255,255,255,.16);
+    --accent:#2e7dff; --accent-dim:rgba(46,125,255,.14);
+    --sans:"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;
+    --mono:"Cascadia Code",Consolas,"Sarasa Mono SC",monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+       font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .canvas{max-width:1180px;margin:0 auto;padding:48px 40px 64px}
+
+  /* ── top bar ── */
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;
+          border-bottom:1px solid var(--hair);padding-bottom:14px;margin-bottom:40px}
+  .logotype{font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--ink)}
+  .topbar .meta{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--ink-faint)}
+
+  /* ── hero ── */
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.22em;color:var(--accent);margin-bottom:14px}
+  h1{font-size:44px;font-weight:600;line-height:1.12;letter-spacing:-.02em;max-width:20em}
+  h1 .thin{font-weight:400;color:var(--ink-dim)}
+  .lede{margin-top:18px;font-size:16.5px;color:var(--ink-dim);max-width:56em}
+  .lede b{color:var(--ink);font-weight:510}
+
+  /* ── data strip ── */
+  .strip{display:flex;flex-wrap:wrap;gap:0 56px;border-top:1px solid var(--hair);
+         border-bottom:1px solid var(--hair);padding:16px 0;margin:36px 0 0}
+  .strip .cell{min-width:150px}
+  .strip .num{font-family:var(--mono);font-size:24px;letter-spacing:-.01em;color:var(--ink)}
+  .strip .num em{font-style:normal;color:var(--accent)}
+  .strip .lbl{font-size:12px;letter-spacing:.08em;color:var(--ink-faint);margin-top:2px}
+
+  /* ── sections ── */
+  section{margin-top:56px}
+  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:6px}
+  .sec-no{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em}
+  h2{font-size:21px;font-weight:600;letter-spacing:.01em}
+  .sec-note{font-size:12.5px;color:var(--ink-faint);margin-left:auto;font-family:var(--mono)}
+  .rule{border:0;border-top:1px solid var(--hair);margin:10px 0 22px}
+
+  /* ── feature grid ── */
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:0 64px}
+  .feat .row{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--hair);align-items:baseline}
+  .feat .row:last-child{border-bottom:0}
+  .tick{flex:0 0 auto;width:14px;height:14px;margin-top:3px}
+  .feat .t{font-weight:510;font-size:14.5px;white-space:nowrap}
+  .feat .d{color:var(--ink-dim);font-size:13.5px}
+
+  /* ── tables ── */
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--ink-faint);
+     font-weight:400;text-align:left;padding:0 14px 9px 0;border-bottom:1px solid var(--hair-strong)}
+  td{padding:10px 14px 10px 0;border-bottom:1px solid var(--hair);vertical-align:top;color:var(--ink-dim)}
+  td.k{color:var(--ink);font-weight:510;white-space:nowrap}
+  td.mono{font-family:var(--mono);font-size:12.5px;color:var(--ink)}
+  tr:last-child td{border-bottom:0}
+  .ok{font-family:var(--mono);color:#4cc38a;font-size:12.5px;white-space:nowrap}
+
+  /* ── screenshot ── */
+  figure{margin:26px 0 0;border:1px solid var(--hair);padding:10px;background:#0c0e13}
+  figure img{display:block;width:100%;height:auto}
+  figcaption{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);
+             letter-spacing:.05em;padding:10px 4px 2px}
+
+  /* ── usage ── */
+  .steps{counter-reset:st}
+  .steps .st{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--hair)}
+  .steps .st:last-child{border-bottom:0}
+  .steps .st::before{counter-increment:st;content:counter(st,decimal-leading-zero);
+      font-family:var(--mono);font-size:13px;color:var(--accent);flex:0 0 28px}
+  .steps .st b{font-weight:510;font-size:14.5px}
+  .steps .st span{color:var(--ink-dim);font-size:13.5px}
+  code{font-family:var(--mono);font-size:12.5px;background:var(--accent-dim);
+       color:var(--ink);padding:1px 6px;border-radius:2px}
+
+  /* ── colophon ── */
+  .colophon{margin-top:64px;border-top:1px solid var(--hair);padding-top:16px;
+            font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);
+            display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;letter-spacing:.04em}
+  a{color:var(--accent);text-decoration:none}
+  @media(max-width:860px){.feat{grid-template-columns:1fr}h1{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <div class="topbar">
+    <div class="logotype">KEYCLICKCOUNTER</div>
+    <div class="meta">.NET 10.0 WPF · build 2026-09-16 · win-x64 self-contained</div>
+  </div>
+
+  <div class="kicker">键盘 / 鼠标 · 全局统计</div>
+  <h1>每个按键、每一格滚轮、<span class="thin">每一段光标轨迹</span>，都有账本。</h1>
+  <p class="lede">常驻托盘的 WPF 桌面工具：通过 Win32 低级钩子监听<b>全系统</b>的键盘与鼠标事件，
+  在一张可视化 104 键面板上实时高亮与计数，并累计<b>滚轮滚动格数（换算圈数）</b>与
+  <b>光标移动距离（换算 cm / m）</b>。普通用户权限运行，退出前数据落盘 JSON，下次启动接着记。</p>
+
+  <div class="strip">
+    <div class="cell"><div class="num"><em>104</em> + 6</div><div class="lbl">键盘键位 + 鼠标键（含滚轮）</div></div>
+    <div class="cell"><div class="num">24 <em>格</em></div><div class="lbl">滚轮每圈换算口径</div></div>
+    <div class="cell"><div class="num">DPI <em>/ 2.54</em></div><div class="lbl">px→cm 默认系数，可校准</div></div>
+    <div class="cell"><div class="num"><em>162</em> KB</div><div class="lbl">自包含主程序体积</div></div>
+  </div>
+
+  <section>
+    <div class="sec-head"><span class="sec-no">01</span><h2>功能清单</h2>
+      <span class="sec-note">all verified on device</span></div>
+    <hr class="rule">
+    <div class="feat">
+      <div class="row"><svg class="tick" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="#2e7dff" stroke-width="1.6"/></svg>
+        <div class="t">全局钩子监听</div><div class="d">后台进程亦捕获，窗口未激活也计数</div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="#2e7dff" stroke-width="1.6"/></svg>
+        <div class="t">长按去重</div><div class="d">按住不放只计 1 次，钩子过滤重复消息</div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="#2e7dff" stroke-width="1.6"/></svg>
+        <div class="t">滚轮圈数统计</div><div class="d">上下/左右滚按 |Δ|/120 累计格数，÷24 得圈数</div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="#2e7dff" stroke-width="1.6"/></svg>
+        <div class="t">光标移动距离</div><div class="d">逐段欧氏距离累加，换算 cm，≥100cm 自动切 m</div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="#2e7dff" stroke-width="1.6"/></svg>
+        <div class="t">托盘常驻</div><div class="d">最小化/关闭均缩到托盘，双击恢复，菜单可退出</div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="#2e7dff" stroke-width="1.6"/></svg>
+        <div class="t">关机安全退出</div><div class="d">WM_ENDSESSION 走真实退出，不阻塞系统关机</div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="#2e7dff" stroke-width="1.6"/></svg>
+        <div class="t">持久化</div><div class="d">退出保存 keycount.json，启动自动恢复</div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="#2e7dff" stroke-width="1.6"/></svg>
+        <div class="t">px/cm 校准</div><div class="d">默认 = 系统DPI÷2.54，工具栏输入框手动修正</div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 14 14" fill="none"><path d="M2 7.5L5.5 11L12 3.5" stroke="#2e7dff" stroke-width="1.6"/></svg>
+        <div class="t">浅色 / 深色皮肤</div><div class="d">工具栏一键切换，选择持久化，标题栏跟随</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-no">02</span><h2>数据口径</h2>
+      <span class="sec-note">counting rules</span></div>
+    <hr class="rule">
+    <table>
+      <tr><th style="width:9em">指标</th><th>口径</th><th style="width:16em">实现要点</th></tr>
+      <tr><td class="k">按键 / 鼠标键</td><td>单次按下 +1；按住重复不计；未映射键（媒体键等）计入"其他键"</td>
+        <td class="mono">WH_KEYBOARD_LL + _downKeys 去重</td></tr>
+      <tr><td class="k">小键盘 Enter</td><td>与主 Enter 分开计数（LLKHF_EXTENDED 扩展位区分）</td>
+        <td class="mono">flags &amp; LLKHF_EXTENDED</td></tr>
+      <tr><td class="k">滚轮格数</td><td>|Δ| / 120 累计；高精度滚轮小步进（Δ&lt;120）也正确累加</td>
+        <td class="mono">Interlocked.Add，钩子线程写</td></tr>
+      <tr><td class="k">圈数</td><td>格数 ÷ 24（常见滚轮每圈 24 格，界面标注口径）</td>
+        <td class="mono">NotchesPerRevolution = 24</td></tr>
+      <tr><td class="k">移动距离</td><td>相邻 WM_MOUSEMOVE 点欧氏距离累加（像素）；
+        cm = px ÷ pxPerCm；&lt;100cm 显示 cm，否则 m</td>
+        <td class="mono">√(Δx²+Δy²)，UI 每秒轮询</td></tr>
+      <tr><td class="k">鼠标 5 键</td><td>左/右/中 + X1/X2 侧键；X 键按 mouseData 高 16 位区分</td>
+        <td class="mono">WM_XBUTTONDOWN → hi==2 ? X2 : X1</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-no">03</span><h2>架构模块</h2>
+      <span class="sec-note">MVVM · 17 source files</span></div>
+    <hr class="rule">
+    <table>
+      <tr><th style="width:11em">模块</th><th>职责</th><th style="width:20em">关键实现</th></tr>
+      <tr><td class="k">HookService</td><td>全局键盘+鼠标钩子安装/卸载，事件分发，滚轮与距离线程内累计</td>
+        <td class="mono">SetWindowsHookEx / 委托防 GC / Interlocked</td></tr>
+      <tr><td class="k">KeyCountViewModel</td><td>计数、200ms 高亮、总计聚合、滚轮/距离换算、重置命令</td>
+        <td class="mono">DispatcherTimer 轮询 + INotifyPropertyChanged</td></tr>
+      <tr><td class="k">MainWindow</td><td>可视化键盘渲染（Viewbox+Canvas）、托盘行为、WM_ENDSESSION 处理</td>
+        <td class="mono">HwndSource.AddHook / OnClosing 拦截</td></tr>
+      <tr><td class="k">TrayIconService</td><td>NotifyIcon 托盘图标、右键菜单（显示/重置/退出）</td>
+        <td class="mono">WinForms NotifyIcon + ContextMenuStrip</td></tr>
+      <tr><td class="k">StorageService</td><td>JSON 读写 keycount.json（含 CursorDistancePx 基线）</td>
+        <td class="mono">System.Text.Json</td></tr>
+      <tr><td class="k">KeyboardLayout / KeyMapping</td><td>104 键几何布局（u=50px 网格）与虚拟键码→界面 Id 映射</td>
+        <td class="mono">22.75u × 6u Canvas 坐标系</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-no">04</span><h2>验证矩阵</h2>
+      <span class="sec-note">real test data · 2026-09-16</span></div>
+    <hr class="rule">
+    <table>
+      <tr><th>验证项</th><th style="width:24em">方法</th><th style="width:9em">结果</th></tr>
+      <tr><td class="k">键盘计数</td><td>SendInput 注入 A×3 + Space×1，读窗口标题</td><td class="ok">总按键 4 ✓</td></tr>
+      <tr><td class="k">长按去重</td><td>按住 C 900ms（产生连续 repeat）</td><td class="ok">仅 +1 ✓</td></tr>
+      <tr><td class="k">鼠标左/右/中</td><td>SendInput 注入三键各 1 次</td><td class="ok">计数 +3 ✓</td></tr>
+      <tr><td class="k">滚轮统计</td><td>注入上 5 格 + 下 5 格（|Δ| 口径）</td><td class="ok">累计 20 格 ✓</td></tr>
+      <tr><td class="k">滚轮恢复</td><td>退出保存后重启进程</td><td class="ok">启动即 20 格 ✓</td></tr>
+      <tr><td class="k">移动距离</td><td>注入 60 步 × √(15²+8²)≈17px 相对移动</td><td class="ok">42.1cm / 3065px ✓</td></tr>
+      <tr><td class="k">重置统计</td><td>UIA Invoke「重置统计」按钮</td><td class="ok">滚轮/距离归零 ✓</td></tr>
+      <tr><td class="k">关闭到托盘</td><td>PostMessage WM_CLOSE</td><td class="ok">进程存活 ✓</td></tr>
+      <tr><td class="k">关机路径</td><td>模拟 WM_ENDSESSION(wParam=1)</td><td class="ok">exit 0 + 落盘 ✓</td></tr>
+      <tr><td class="k">持久化</td><td>读回 keycount.json 全量核对</td><td class="ok">A:3 / Space:1 ✓</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-no">05</span><h2>界面</h2>
+      <span class="sec-note">1240 × 780 · dark theme</span></div>
+    <hr class="rule">
+    <figure>
+      <img src="screenshot-keyboard.png" alt="KeyClickCounter 主界面：104 键可视化布局 + 鼠标按键卡片 + 状态栏">
+      <figcaption>fig.1 — 功能键区 / 主键盘区 / 编辑键区 / 数字小键盘区完整渲染；鼠标行含滚轮卡片（4）；状态栏双行：合计与滚轮圈数、距离换算。</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-no">06</span><h2>使用与构建</h2>
+      <span class="sec-note">no runtime required</span></div>
+    <hr class="rule">
+    <div class="steps">
+      <div class="st"><div><b>运行</b> — 双击发布目录 <code>KeyClickCounter.exe</code>（自包含，目标机无需安装 .NET）；或源码目录 <code>dotnet run --project KeyClickCounter</code></div></div>
+      <div class="st"><div><b>日常使用</b> — 关闭/最小化窗口自动缩到托盘；双击托盘图标恢复；托盘右键可重置统计或彻底退出；工具栏可开置顶、改 px/cm 校准系数</div></div>
+      <div class="st"><div><b>重新构建</b> — <code>dotnet publish -c Release -r win-x64 --self-contained true</code>（需 .NET 10 SDK）</div></div>
+      <div class="st"><div><b>注意</b> — 普通用户权限即可；部分带反作弊的全屏游戏内低级钩子收不到输入；数据存 %APPDATA%\KeyClickCounter\keycount.json，每 30 秒自动保存，强杀进程最多丢 30 秒；重复启动自动唤醒已有窗口（单实例）</div></div>
+    </div>
+  </section>
+
+  <div class="colophon">
+    <span>E:\PrivateProjects\Private\KeyMonitor\KeyClickCounter\bin\Release\net10.0-windows\win-x64\publish\KeyClickCounter.exe</span>
+    <span>.NET 10.0.100 · WPF + WinForms · MIT-scope personal project</span>
+  </div>
+
+</div>
+</body>
+</html>

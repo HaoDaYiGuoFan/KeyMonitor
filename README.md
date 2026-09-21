@@ -11,11 +11,17 @@
 
 ## 📸 界面预览
 
-> TODO：请将截图放入项目根目录并替换下方图片链接（例如 `screenshot-light.png`、`screenshot-keyboard.png`）
+**主界面：**
 
-| 主界面 | 键盘视图 | 深色皮肤 |
-| ------ | -------- | -------- |
-| ![](screenshot-light.png) | ![](screenshot-keyboard.png) | ![](screenshot-light-restart.png) |
+![](screenshot-light.png)
+
+**键盘视图：**
+
+![](screenshot-keyboard.png)
+
+**深色皮肤：**
+
+![](screenshot-light-restart.png)
 
 ## ✨ 功能特性
 

@@ -1,6 +1,11 @@
 # KeyClickCounter — Keyboard & Mouse Usage Statistics
 
-> 🌏 **Language: English** ｜ [**简体中文**](README.md)
+<p align="center">
+  <a href="README.md"><img src="https://img.shields.io/badge/Language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-7d8590?style=for-the-badge" alt="简体中文版本"/></a>
+  <a href="README_EN.md"><img src="https://img.shields.io/badge/Language-English-2fbf71?style=for-the-badge" alt="English (Current)"/></a>
+  <br/>
+  <sub>🌏 Click to switch language · 一键切换语言</sub>
+</p>
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=.net&logoColor=white)](https://dotnet.microsoft.com/)
 [![WPF](https://img.shields.io/badge/UI-WPF-512BD4?logo=windows&logoColor=white)](https://learn.microsoft.com/windows/apps/desktop/wpf)

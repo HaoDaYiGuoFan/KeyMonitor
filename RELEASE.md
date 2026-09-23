@@ -1,6 +1,9 @@
 # Release Notes — KeyClickCounter v1.0.0
 
-> 🌏 **语言 / Language：简体中文** ｜ [**English**](RELEASE_EN.md)
+<p align="center">
+  <a href="RELEASE.md"><img src="https://img.shields.io/badge/Language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-2e7dff?style=for-the-badge" alt="简体中文（当前语言）"/></a>
+  <a href="RELEASE_EN.md"><img src="https://img.shields.io/badge/Language-English-7d8590?style=for-the-badge" alt="English"/></a>
+</p>
 
 ## 📦 版本信息
 

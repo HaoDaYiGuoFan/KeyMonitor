@@ -1,6 +1,11 @@
 # KeyClickCounter — 键盘鼠标按键统计工具
 
-> 🌏 **语言 / Language：简体中文** ｜ [**English**](README_EN.md)
+<p align="center">
+  <a href="README.md"><img src="https://img.shields.io/badge/Language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-2e7dff?style=for-the-badge" alt="简体中文（当前语言）"/></a>
+  <a href="README_EN.md"><img src="https://img.shields.io/badge/Language-English-7d8590?style=for-the-badge" alt="English Version"/></a>
+  <br/>
+  <sub>🌏 一键切换中英文文档 · Click to switch language</sub>
+</p>
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=.net&logoColor=white)](https://dotnet.microsoft.com/)
 [![WPF](https://img.shields.io/badge/UI-WPF-512BD4?logo=windows&logoColor=white)](https://learn.microsoft.com/windows/apps/desktop/wpf)

@@ -2,7 +2,7 @@
 
 > 使用说明：GitHub → Releases → **Draft a new release（新建 Release）**，Tag 填 `KeyClickCounter-V1.0.1`，正文粘贴下方对应语言的文案。
 > - Tag：`KeyClickCounter-V1.0.1`（新建）
-> - Target：`master`（当前 `<TARGET_HASH>`）
+> - Target：`master`（当前 e131eaa）
 > - 发布日期：2026-09-24
 > - 附件：上传 `KeyClickCounter-1.0.1-win-x64.zip`（66,734,443 字节 ≈ 63.6 MB）
 
@@ -165,7 +165,7 @@ Docs: [README](https://github.com/HaoDaYiGuoFan/KeyMonitor) · [Release Notes](R
 ## 📋 发布校验信息（存档 · 2026-09-24）
 
 - 发布日期：2026-09-24
-- 目标提交：`<TARGET_HASH>`（master）
+- 目标提交：`e131eaa`（master）
 - 主程序：`KeyClickCounter.exe`（单文件自包含，156,037,207 字节；SHA-256 `B06819E7613D537DBC907C77266AF7AC12B18B3C51F7AAE26E36B8CBA3C0A5C5`）
 - 发布包：`KeyClickCounter-1.0.1-win-x64.zip`（66,734,443 字节 ≈ 63.6 MB；SHA-256 `9C1C8D7B1029DEA27DB86FC2B06B586F4972313F323E84E2E9AC2D17FE486983`）
 

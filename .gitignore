@@ -26,8 +26,7 @@ TestResults/
 /_wintest/
 
 # ========== 其他 ==========
-# 本地打包产物（Release 目录，不入库）
-/Release/
+# Release 发布产物（zip / 校验和 / 发布文案）自 v1.0.0 起纳入版本库，随源码一起发布
 *.nupkg
 *.snupkg
 

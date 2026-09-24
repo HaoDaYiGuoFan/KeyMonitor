@@ -1,0 +1,6 @@
+# KeyClickCounter v1.0.0 - win-x64  SHA-256
+SHA256 (KeyClickCounter-1.0.0-win-x64.zip) = 3B8A1A6E006176792DE6BED22D5D1FF24B8550A5644654D65A66C65AE7E10B29
+# Generated: 2026-09-24 09:27:27
+
+# Verify:
+Get-FileHash .\KeyClickCounter-1.0.0-win-x64.zip -Algorithm SHA256

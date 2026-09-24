@@ -10,7 +10,7 @@
 | Item | Value |
 | --- | --- |
 | Version | **v1.0.0** (first stable release) |
-| Release date | 2026-09-23 |
+| Release date | 2026-09-24 |
 | Target platform | Windows 10 / 11 (64-bit) · `win-x64` |
 | Runtime | **No .NET required** (single-file self-contained) |
 | Repository | [https://github.com/HaoDaYiGuoFan/KeyMonitor](https://github.com/HaoDaYiGuoFan/KeyMonitor) |

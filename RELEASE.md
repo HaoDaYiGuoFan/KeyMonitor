@@ -10,7 +10,7 @@
 | 项 | 值 |
 | --- | --- |
 | 版本号 | **v1.0.0**（首个正式版） |
-| 发布日期 | 2026-09-23 |
+| 发布日期 | 2026-09-24 |
 | 目标平台 | Windows 10 / 11（64 位）· `win-x64` |
 | 运行时 | **无需安装 .NET**（单文件自包含 Self-contained） |
 | 源码仓库 | [https://github.com/HaoDaYiGuoFan/KeyMonitor](https://github.com/HaoDaYiGuoFan/KeyMonitor) |

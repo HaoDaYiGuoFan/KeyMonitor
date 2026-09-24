@@ -1,19 +1,24 @@
 # KeyClickCounter — GitHub Release 发布文案（中英双语，可直接粘贴）
 
-> 使用说明：GitHub → Releases → **编辑现有 Release `KeyClickCounter-V1.0.0`**（2026-09-23 创建），正文粘贴下方对应语言的文案。
-> - Tag：`KeyClickCounter-V1.0.0`（已存在）
-> - Target：`master`（当前 774b2cb）
+> 使用说明：GitHub → Releases → **Draft a new release（新建 Release）**，Tag 填 `KeyClickCounter-V1.0.1`，正文粘贴下方对应语言的文案。
+> - Tag：`KeyClickCounter-V1.0.1`（新建）
+> - Target：`master`（当前 `<TARGET_HASH>`）
 > - 发布日期：2026-09-24
-> - 附件：上传 `KeyClickCounter-1.0.0-win-x64.zip`（66,734,276 字节 ≈ 63.6 MB，**覆盖旧的 66,729,241 字节包**）
+> - 附件：上传 `KeyClickCounter-1.0.1-win-x64.zip`（66,734,443 字节 ≈ 63.6 MB）
 
 ---
 
 ## 方案一：简体中文文案
 
 ```
-# KeyClickCounter v1.0.0 🎉
+# KeyClickCounter v1.0.1 🎉
 
-**首个正式版发布！**
+**补丁更新版！**（在 v1.0.0 首个正式版基础上新增多语言界面与校验清单）
+
+## 🆕 v1.0.1 更新
+
+- 多语言界面：启动自动跟随系统语言（中文 / 英文），工具栏一键切换，选择持久化
+- 发布包随附逐文件 SHA-256 校验清单（`SHA256SUMS.txt`），发布文档附完整校验信息
 
 基于 **.NET 10 + WPF** 的 Windows 键盘 / 鼠标统计工具：通过全局低级钩子实时统计
 每次按键、鼠标左/右/中/X1/X2、滚轮格数与圈数、光标移动距离（cm/m），
@@ -37,14 +42,14 @@
 
 | 文件 | 说明 |
 | --- | --- |
-| KeyClickCounter-1.0.0-win-x64.zip | 63.6 MB · 单文件自包含 · Windows 10/11 64 位 · **无需安装 .NET** |
+| KeyClickCounter-1.0.1-win-x64.zip | 63.6 MB · 单文件自包含 · Windows 10/11 64 位 · **无需安装 .NET** |
 
 SHA-256：
-`3B8A1A6E006176792DE6BED22D5D1FF24B8550A5644654D65A66C65AE7E10B29`
+`9C1C8D7B1029DEA27DB86FC2B06B586F4972313F323E84E2E9AC2D17FE486983`
 
 ## 🚀 快速开始
 
-1. 下载并解压 `KeyClickCounter-1.0.0-win-x64.zip`
+1. 下载并解压 `KeyClickCounter-1.0.1-win-x64.zip`
 2. 双击 `KeyClickCounter.exe` 启动（普通用户权限即可，无需管理员）
 3. 最小化 / 关闭窗口会缩到系统托盘，双击托盘图标恢复
 4. 托盘右键菜单：显示窗口 / 重置统计 / 退出程序
@@ -83,9 +88,14 @@ SHA-256：
 ## 方案二：English 文案
 
 ```
-# KeyClickCounter v1.0.0 🎉
+# KeyClickCounter v1.0.1 🎉
 
-**First stable release!**
+**Patch release!** (adds multilingual UI + checksum manifest on top of v1.0.0)
+
+## 🆕 What's New in v1.0.1
+
+- Multilingual UI: auto-matches the system language at launch (Chinese / English), one-click toolbar toggle, persisted with your data
+- Per-file SHA-256 checksum manifest (`SHA256SUMS.txt`) bundled; release docs include full verification info
 
 A **.NET 10 + WPF** keyboard & mouse statistics app for Windows: global low-level hooks
 count every key press, mouse L/R/M/X1/X2 buttons, wheel notches & rotations, and cursor
@@ -109,14 +119,14 @@ travel distance (cm/m) on a visual 104-key layout.
 
 | File | Notes |
 | --- | --- |
-| KeyClickCounter-1.0.0-win-x64.zip | 63.6 MB · single-file self-contained · Windows 10/11 x64 · **no .NET needed** |
+| KeyClickCounter-1.0.1-win-x64.zip | 63.6 MB · single-file self-contained · Windows 10/11 x64 · **no .NET needed** |
 
 SHA-256:
-`3B8A1A6E006176792DE6BED22D5D1FF24B8550A5644654D65A66C65AE7E10B29`
+`9C1C8D7B1029DEA27DB86FC2B06B586F4972313F323E84E2E9AC2D17FE486983`
 
 ## 🚀 Quick Start
 
-1. Download and extract `KeyClickCounter-1.0.0-win-x64.zip`
+1. Download and extract `KeyClickCounter-1.0.1-win-x64.zip`
 2. Double-click `KeyClickCounter.exe` (normal user privileges, no admin required)
 3. Minimize or close the window to hide to the system tray; double-click the tray icon to restore
 4. Tray right-click menu: Show Window / Reset Statistics / Exit
@@ -155,23 +165,23 @@ Docs: [README](https://github.com/HaoDaYiGuoFan/KeyMonitor) · [Release Notes](R
 ## 📋 发布校验信息（存档 · 2026-09-24）
 
 - 发布日期：2026-09-24
-- 目标提交：`d1a5880`（master）
-- 主程序：`KeyClickCounter.exe`（单文件自包含，156,037,207 字节；SHA-256 `99D4430C016A46AAC746DCD2CA4B91F6DFD2017142C3CD8163B97A27AEB6ED36`）
-- 发布包：`KeyClickCounter-1.0.0-win-x64.zip`（66,734,276 字节 ≈ 63.6 MB；SHA-256 `3B8A1A6E006176792DE6BED22D5D1FF24B8550A5644654D65A66C65AE7E10B29`）
+- 目标提交：`<TARGET_HASH>`（master）
+- 主程序：`KeyClickCounter.exe`（单文件自包含，156,037,207 字节；SHA-256 `B06819E7613D537DBC907C77266AF7AC12B18B3C51F7AAE26E36B8CBA3C0A5C5`）
+- 发布包：`KeyClickCounter-1.0.1-win-x64.zip`（66,734,443 字节 ≈ 63.6 MB；SHA-256 `9C1C8D7B1029DEA27DB86FC2B06B586F4972313F323E84E2E9AC2D17FE486983`）
 
 ### 包内逐文件 SHA-256（与 zip 内 `SHA256SUMS.txt` 一致）
 
 ```text
-99D4430C016A46AAC746DCD2CA4B91F6DFD2017142C3CD8163B97A27AEB6ED36  KeyClickCounter.exe
+B06819E7613D537DBC907C77266AF7AC12B18B3C51F7AAE26E36B8CBA3C0A5C5  KeyClickCounter.exe
 0A149906360B6542939679B696D273C5B375CD92381BA29A6B654116283205B1  LICENSE
-7BEEF7ABC8706422AFD44E505380CBABD48ED7DDA8C11B966AF3FE99D867F0A5  README_EN.md
-E649C23C925D1745A3E4910CD56E8F05D4BF6DD7C291D8DF396F0AAB68F61000  README.md
-76501C0EBDBBB5967991EB30C54016FD09F95652B95766D0A08CD6B7895BADB4  RELEASE_EN.md
-FC419D5D0F9B74BDD38CE4EA625B16771D1BC2F2CDFF25DB524F924B7E50D9C7  RELEASE.md
+00C7D9236F2157B35B89403B6B0C68EDDE59966E629DC4938004A9F47DF00DD2  README_EN.md
+9DE24D0EE825D55F3A1BD23F164E022127D4905683B923D6BFE268C333BFB7AB  README.md
+3AE30F968B9647C694639BCD62702F27DF8CE25FE8F11E4EC8000BEF8DB598B4  RELEASE_EN.md
+533FDC81D6C32A5364584CC4978916E8B46CECC81FF44B12F522B5B93C172F28  RELEASE.md
 EC61EA3AE2417DE1CC436D04765F0CEB4B41207C88DACCE23A6B0DED6D85CB84  screenshot-keyboard.png
 5BE1FC14FE8A1085828A2BB39242FD1FBE5EE9CA2A3E6125AADA0F6679A3DBF9  screenshot-light-restart.png
 B9178C383D4B59683F58AE12CA63A2E0B485535364DF92A9951A5C8803D3CD29  screenshot-light.png
 ```
 
 - 外层校验：`Release/SHA256SUMS.txt`（zip 整体 SHA-256，已随仓库提交）
-- 核验命令：`Get-FileHash .\KeyClickCounter-1.0.0-win-x64.zip -Algorithm SHA256`
+- 核验命令：`Get-FileHash .\KeyClickCounter-1.0.1-win-x64.zip -Algorithm SHA256`

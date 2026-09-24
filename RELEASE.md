@@ -1,4 +1,4 @@
-# Release Notes — KeyClickCounter v1.0.0
+# Release Notes — KeyClickCounter v1.0.1
 
 <p align="center">
   <a href="RELEASE.md"><img src="https://img.shields.io/badge/Language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-2e7dff?style=for-the-badge" alt="简体中文（当前语言）"/></a>
@@ -9,7 +9,7 @@
 
 | 项 | 值 |
 | --- | --- |
-| 版本号 | **v1.0.0**（首个正式版） |
+| 版本号 | **v1.0.1**（补丁版） |
 | 发布日期 | 2026-09-24 |
 | 目标平台 | Windows 10 / 11（64 位）· `win-x64` |
 | 运行时 | **无需安装 .NET**（单文件自包含 Self-contained） |
@@ -17,9 +17,13 @@
 | 技术栈 | .NET 10（`net10.0-windows`）· WPF · WinForms 托盘 |
 | AI 辅助 | 项目由 **DeepSeek V4 Flash** 大模型辅助生成 |
 
-## ✨ 版本更新内容（v1.0.0）
+## ✨ 版本更新内容（v1.0.1）
 
-**核心功能：**
+**相比 v1.0.0 新增：**
+- 多语言界面：启动自动跟随系统语言（中文 / 英文），工具栏一键切换，选择持久化
+- 发布包随附 `SHA256SUMS.txt` 逐文件 SHA-256 校验清单，发布文档同步补充完整校验信息
+
+**完整功能概览（核心功能）：**
 - 全局低级键盘 / 鼠标钩子（`WH_KEYBOARD_LL` / `WH_MOUSE_LL`），任意前台程序下均可统计
 - 104 键标准键盘可视化布局，按键按下高亮 200ms 并实时显示累计次数
 - 鼠标左 / 右 / 中 / X1 / X2 独立计数；长按去重，每键只计一次
@@ -48,7 +52,7 @@
 
 ## 🚀 安装与使用
 
-1. 下载 `KeyClickCounter-1.0.0-win-x64.zip` 并解压到任意目录
+1. 下载 `KeyClickCounter-1.0.1-win-x64.zip` 并解压到任意目录
 2. 双击 `KeyClickCounter.exe` 启动（普通用户权限即可，无需管理员）
 3. 最小化或关闭窗口会缩到**系统托盘**，双击托盘图标恢复
 4. 托盘右键菜单：显示窗口 / 重置统计数据 / 退出程序
@@ -66,7 +70,7 @@
 发布包 SHA-256 值请见随包附带的 `SHA256SUMS.txt`，可用以下命令核验：
 
 ```powershell
-Get-FileHash .\KeyClickCounter-1.0.0-win-x64.zip -Algorithm SHA256
+Get-FileHash .\KeyClickCounter-1.0.1-win-x64.zip -Algorithm SHA256
 ```
 
 ## 🛠 从源码构建

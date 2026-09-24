@@ -11,7 +11,7 @@
 [![WPF](https://img.shields.io/badge/UI-WPF-512BD4?logo=windows&logoColor=white)](https://learn.microsoft.com/windows/apps/desktop/wpf)
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-0078D6?logo=windows&logoColor=white)]()
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Release](https://img.shields.io/badge/Release-v1.0.0-blue)](RELEASE_EN.md)
+[![Release](https://img.shields.io/badge/Release-v1.0.1-blue)](RELEASE_EN.md)
 
 ## 📖 Introduction
 

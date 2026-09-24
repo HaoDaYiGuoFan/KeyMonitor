@@ -1,4 +1,4 @@
-# Release Notes — KeyClickCounter v1.0.0
+# Release Notes — KeyClickCounter v1.0.1
 
 <p align="center">
   <a href="RELEASE.md"><img src="https://img.shields.io/badge/Language-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-7d8590?style=for-the-badge" alt="简体中文版本"/></a>
@@ -9,7 +9,7 @@
 
 | Item | Value |
 | --- | --- |
-| Version | **v1.0.0** (first stable release) |
+| Version | **v1.0.1** (patch release) |
 | Release date | 2026-09-24 |
 | Target platform | Windows 10 / 11 (64-bit) · `win-x64` |
 | Runtime | **No .NET required** (single-file self-contained) |
@@ -17,9 +17,13 @@
 | Tech stack | .NET 10 (`net10.0-windows`) · WPF · WinForms tray |
 | AI assist | Project generated with the **DeepSeek V4 Flash** LLM |
 
-## ✨ What's New in v1.0.0
+## ✨ What's New in v1.0.1
 
-**Core features:**
+**New in v1.0.1 (vs v1.0.0):**
+- Multilingual UI: auto-matches the system language at launch (Chinese / English), one-click toolbar toggle, persisted with your data
+- The package now bundles a per-file `SHA256SUMS.txt` checksum manifest; release docs include the full verification info
+
+**Full feature overview (core):**
 - Global low-level keyboard / mouse hooks (`WH_KEYBOARD_LL` / `WH_MOUSE_LL`) — works in any foreground app
 - 104-key visual keyboard layout, pressed keys highlight for 200ms with live counters
 - Mouse Left / Right / Middle / X1 / X2 counted independently; key-hold de-duplication (one press per physical press)
@@ -48,7 +52,7 @@
 
 ## 🚀 Installation & Usage
 
-1. Download `KeyClickCounter-1.0.0-win-x64.zip` and extract it anywhere
+1. Download `KeyClickCounter-1.0.1-win-x64.zip` and extract it anywhere
 2. Double-click `KeyClickCounter.exe` to start (normal user privileges — no admin required)
 3. Minimizing or closing the window hides the app to the **system tray**; double-click the tray icon to restore
 4. Tray right-click menu: Show Window / Reset Statistics / Exit
@@ -66,7 +70,7 @@
 The SHA-256 value of the release archive is in the bundled `SHA256SUMS.txt`. Verify with:
 
 ```powershell
-Get-FileHash .\KeyClickCounter-1.0.0-win-x64.zip -Algorithm SHA256
+Get-FileHash .\KeyClickCounter-1.0.1-win-x64.zip -Algorithm SHA256
 ```
 
 ## 🛠 Build from Source

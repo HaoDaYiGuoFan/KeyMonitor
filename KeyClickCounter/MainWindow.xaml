@@ -19,32 +19,34 @@
         <!-- 工具栏 -->
         <DockPanel Grid.Row="0" LastChildFill="True">
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-                <Button Content="重置统计" Command="{Binding ResetCommand}" Style="{StaticResource ToolButtonStyle}"/>
-                <Button Content="隐藏到托盘" Click="HideToTray_Click" Style="{StaticResource ToolButtonStyle}"/>
-                <ToggleButton Content="窗口置顶" IsChecked="{Binding IsTopmost, Mode=TwoWay}" Style="{StaticResource ToolToggleStyle}"/>
-                <ToggleButton Content="深色皮肤" Style="{StaticResource ToolToggleStyle}" IsChecked="{Binding IsDarkTheme, Mode=TwoWay}" ToolTip="勾选=深色皮肤，取消=浅色皮肤"/>
-                <TextBlock Text="px/cm:" VerticalAlignment="Center" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="6,0,4,0"/>
+                <Button Content="{DynamicResource L.ResetStats}" Command="{Binding ResetCommand}" Style="{StaticResource ToolButtonStyle}"/>
+                <Button Content="{DynamicResource L.HideToTray}" Click="HideToTray_Click" Style="{StaticResource ToolButtonStyle}"/>
+                <ToggleButton Content="{DynamicResource L.AlwaysOnTop}" IsChecked="{Binding IsTopmost, Mode=TwoWay}" Style="{StaticResource ToolToggleStyle}"/>
+                <ToggleButton Content="{DynamicResource L.DarkTheme}" Style="{StaticResource ToolToggleStyle}" IsChecked="{Binding IsDarkTheme, Mode=TwoWay}" ToolTip="{DynamicResource L.DarkThemeTip}"/>
+                <TextBlock Text="{DynamicResource L.PxPerCmLabel}" VerticalAlignment="Center" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="6,0,4,0"/>
                 <TextBox Width="56" VerticalContentAlignment="Center" FontSize="12" Padding="4,2"
                          Background="{DynamicResource ToolBgBrush}" Foreground="{DynamicResource KeyTextBrush}" BorderBrush="{DynamicResource ToolBorderBrush}"
-                         ToolTip="像素/厘米换算系数，可按显示器实际 DPI 校准"
+                         ToolTip="{DynamicResource L.PxPerCmTip}"
                          Text="{Binding PxPerCm, UpdateSourceTrigger=PropertyChanged, StringFormat=0.#}"/>
-                <TextBlock Text="范围:" VerticalAlignment="Center" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="12,0,4,0"/>
+                <TextBlock Text="{DynamicResource L.RangeLabel}" VerticalAlignment="Center" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="12,0,4,0"/>
                 <DatePicker Width="112" FontSize="12" VerticalAlignment="Center" Padding="4,2"
-                            ToolTip="统计起始日期（默认：首次启动统计日期）"
+                            ToolTip="{DynamicResource L.RangeStartTip}"
                             SelectedDate="{Binding RangeStart, Mode=TwoWay}"
                             Background="{DynamicResource ToolBgBrush}" Foreground="{DynamicResource KeyTextBrush}"
                             BorderBrush="{DynamicResource ToolBorderBrush}"/>
-                <TextBlock Text="至" VerticalAlignment="Center" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="4,0"/>
+                <TextBlock Text="{DynamicResource L.RangeSeparator}" VerticalAlignment="Center" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="4,0"/>
                 <DatePicker Width="112" FontSize="12" VerticalAlignment="Center" Padding="4,2"
-                            ToolTip="统计结束日期（默认：今天）"
+                            ToolTip="{DynamicResource L.RangeEndTip}"
                             SelectedDate="{Binding RangeEnd, Mode=TwoWay}"
                             Background="{DynamicResource ToolBgBrush}" Foreground="{DynamicResource KeyTextBrush}"
                             BorderBrush="{DynamicResource ToolBorderBrush}"/>
-                <Button Content="默认范围" Command="{Binding DefaultRangeCommand}" Style="{StaticResource ToolButtonStyle}"
-                        ToolTip="恢复为：首次启动日期 ~ 今天"/>
+                <Button Content="{DynamicResource L.DefaultRange}" Command="{Binding DefaultRangeCommand}" Style="{StaticResource ToolButtonStyle}"
+                        ToolTip="{DynamicResource L.DefaultRangeTip}"/>
+                <Button Content="{DynamicResource L.LangButton}" Command="{Binding ToggleLanguageCommand}" Style="{StaticResource ToolButtonStyle}"
+                        ToolTip="{DynamicResource L.LangTip}"/>
             </StackPanel>
             <TextBlock DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center"
-                       Text="最小化 / 关闭窗口会缩到托盘 · 双击托盘图标恢复"
+                       Text="{DynamicResource L.TrayHint}"
                        Foreground="{DynamicResource HintTextBrush}" FontSize="12"/>
         </DockPanel>
 
@@ -68,7 +70,7 @@
 
         <!-- 鼠标按键（含滚轮卡片） -->
         <StackPanel Grid.Row="2" Margin="2,4,2,0">
-            <TextBlock Text="鼠标按键" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="0,0,0,6"/>
+            <TextBlock Text="{DynamicResource L.MouseSectionTitle}" Foreground="{DynamicResource HintTextBrush}" FontSize="12" Margin="0,0,0,6"/>
             <Viewbox Stretch="Uniform" StretchDirection="DownOnly" MaxHeight="72"
                      HorizontalAlignment="Center">
                 <ItemsControl ItemsSource="{Binding MouseKeys}">

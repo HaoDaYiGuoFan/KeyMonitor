@@ -16,4 +16,7 @@ public class StorageData
 
     /// <summary>主题：1 = 浅色，0 = 深色（兼容旧字段）。</summary>
     public int? ThemeIsLight { get; set; }
+
+    /// <summary>界面语言偏好（zh-Hans / en）；为空时启动按系统语言自动匹配。</summary>
+    public string? Language { get; set; }
 }

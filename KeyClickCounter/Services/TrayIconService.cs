@@ -7,6 +7,9 @@ namespace KeyClickCounter.Services;
 public sealed class TrayIconService : IDisposable
 {
     private readonly NotifyIcon _notifyIcon;
+    private readonly ToolStripMenuItem ShowItem;
+    private readonly ToolStripMenuItem ResetItem;
+    private readonly ToolStripMenuItem ExitItem;
 
     /// <summary>用户点击“退出程序”。</summary>
     public event Action? ExitRequested;
@@ -21,10 +24,13 @@ public sealed class TrayIconService : IDisposable
         catch { /* 图标缺失不影响功能 */ }
 
         var menu = new ContextMenuStrip();
-        menu.Items.Add("显示窗口", null, (_, _) => showWindow());
-        menu.Items.Add("重置统计数据", null, (_, _) => resetStats());
+        ShowItem = new ToolStripMenuItem(LocalizationService.GetText("TrayShow"), null, (_, _) => showWindow());
+        ResetItem = new ToolStripMenuItem(LocalizationService.GetText("TrayReset"), null, (_, _) => resetStats());
+        menu.Items.Add(ShowItem);
+        menu.Items.Add(ResetItem);
         menu.Items.Add(new ToolStripSeparator());
-        menu.Items.Add("退出程序", null, (_, _) => ExitRequested?.Invoke());
+        ExitItem = new ToolStripMenuItem(LocalizationService.GetText("TrayExit"), null, (_, _) => ExitRequested?.Invoke());
+        menu.Items.Add(ExitItem);
 
         _notifyIcon = new NotifyIcon
         {
@@ -34,6 +40,14 @@ public sealed class TrayIconService : IDisposable
             ContextMenuStrip = menu
         };
         _notifyIcon.DoubleClick += (_, _) => showWindow();
+    }
+
+    /// <summary>语言切换后刷新托盘菜单文字。</summary>
+    public void ApplyLanguage()
+    {
+        ShowItem.Text = LocalizationService.GetText("TrayShow");
+        ResetItem.Text = LocalizationService.GetText("TrayReset");
+        ExitItem.Text = LocalizationService.GetText("TrayExit");
     }
 
     public void UpdateText(string text)

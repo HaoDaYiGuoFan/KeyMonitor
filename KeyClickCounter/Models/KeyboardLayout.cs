@@ -115,11 +115,23 @@ public static class KeyboardLayout
 
     public static List<KeyItem> BuildMouseKeys() => new()
     {
-        new KeyItem("MouseLeft",   "左键",  0x01, 0, 0, 150, 56, null, true),
-        new KeyItem("MouseRight",  "右键",  0x02, 0, 0, 150, 56, null, true),
-        new KeyItem("MouseMiddle", "中键",  0x04, 0, 0, 150, 56, null, true),
-        new KeyItem("MouseX1",     "侧键1", 0x05, 0, 0, 150, 56, null, true),
-        new KeyItem("MouseX2",     "侧键2", 0x06, 0, 0, 150, 56, null, true),
-        new KeyItem("MouseWheel",  "滚轮",  0,    0, 0, 150, 56, null, true),
+        new KeyItem("MouseLeft",   "Left",  0x01, 0, 0, 150, 56, null, true),
+        new KeyItem("MouseRight",  "Right",  0x02, 0, 0, 150, 56, null, true),
+        new KeyItem("MouseMiddle", "Middle",  0x04, 0, 0, 150, 56, null, true),
+        new KeyItem("MouseX1",     "X1", 0x05, 0, 0, 150, 56, null, true),
+        new KeyItem("MouseX2",     "X2", 0x06, 0, 0, 150, 56, null, true),
+        new KeyItem("MouseWheel",  "Wheel",  0,    0, 0, 150, 56, null, true),
     };
+/// <summary>
+    /// 按当前界面语言更新键帽主标识（含鼠标键名）。
+    /// 语言词典中用 L.Key.&lt;Id&gt; 提供本地化名称；未提供的键保留默认英文标注。
+    /// </summary>
+    public static void ApplyLanguage(IEnumerable<KeyItem> items)
+    {
+        foreach (var k in items)
+        {
+            string text = Services.LocalizationService.GetText("Key." + k.Id);
+            if (text != "L.Key." + k.Id) k.SetDisplayName(text);
+        }
+    }
 }

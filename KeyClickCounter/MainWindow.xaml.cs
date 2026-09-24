@@ -32,15 +32,22 @@ public partial class MainWindow : Window
 
     public MainWindow()
     {
-        DataContext = _viewModel;
-        InitializeComponent();
-
         // 启动时恢复上次退出保存的统计（AppData；自动迁移旧版程序目录数据；含首次启动日期与按天分桶）
         StorageService.MigrateLegacy();
         var saved = StorageService.Load();
+        // 多语言：优先恢复上次保存的语言，否则按系统语言自动匹配（中文系统→中文，其余→英文）
+        LocalizationService.Initialize(saved.Language);
         _viewModel.InitializeFromStorage(saved);
         // 主题：json 里 ThemeIsLight=1 表示浅色
         _viewModel.SetThemeSilent(!(saved.ThemeIsLight == 1));
+
+        // 键帽与状态栏文本按当前语言初始化
+        _viewModel.RefreshKeyNames();
+
+        DataContext = _viewModel;
+        InitializeComponent();
+
+        LocalizationService.LanguageChanged += OnLanguageChanged;
 
         // 钩子回调在钩子线程，统一调度到 UI 线程
         _hookService.KeyPressed += id => Dispatcher.InvokeAsync(() => _viewModel.RegisterKeyPress(id));
@@ -48,7 +55,7 @@ public partial class MainWindow : Window
         _hookService.OtherKeyPressed += () => Dispatcher.InvokeAsync(() => _viewModel.RegisterOtherKey());
         if (!_hookService.Start())
         {
-            System.Windows.MessageBox.Show(this, "全局钩子安装失败，可能被安全软件拦截。",
+            System.Windows.MessageBox.Show(this, LocalizationService.GetText("HookInstallFailed"),
                 "KeyClickCounter", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         _viewModel.SetHookService(_hookService);
@@ -68,11 +75,25 @@ public partial class MainWindow : Window
         };
         _viewModel.PropertyChanged += (_, e) =>
         {
-            if (e.PropertyName == nameof(KeyCountViewModel.Total))
-                _trayIcon.UpdateText($"KeyClickCounter · 合计 {_viewModel.Total}");
+            if (e.PropertyName == nameof(KeyCountViewModel.Total)) UpdateTrayTotalText();
         };
 
         TryLoadWindowIcon();
+    }
+
+    /// <summary>语言切换后：刷新键帽 / 状态栏文本、托盘菜单与托盘提示，并立即持久化语言偏好。</summary>
+    private void OnLanguageChanged()
+    {
+        _viewModel.RefreshKeyNames();
+        _viewModel.RefreshLanguageTexts();
+        _trayIcon?.ApplyLanguage();
+        UpdateTrayTotalText();
+        SaveCurrent(); // 立即落盘 Language，下次启动沿用该语言
+    }
+
+    private void UpdateTrayTotalText()
+    {
+        _trayIcon?.UpdateText(string.Format(LocalizationService.GetText("TrayTooltipFmt"), _viewModel.Total));
     }
 
     protected override void OnSourceInitialized(EventArgs e)

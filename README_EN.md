@@ -67,6 +67,7 @@ This project was generated with the **DeepSeek V4 Flash** large language model: 
 - **Theme toggle**: the "Dark skin" switch flips between light and dark instantly; the choice persists with your data (the Win32 title bar follows too)
 - **Always-on-top** toggle; the status bar shows total keys / mouse / combined / wheel / distance / uptime
 - **Single-instance guard**: launching again just wakes the existing window — no second instance that could overwrite data
+- **Multilingual UI**: the interface auto-matches your system language at launch (Chinese system → Chinese, others → English); the "中文 ⇄ English" toolbar button toggles it anytime, and your choice persists with your data
 
 ### Persistence
 - Data file: `%APPDATA%\KeyClickCounter\keycount.json` (legacy files stored next to the old exe are migrated automatically)

@@ -28,6 +28,7 @@
 - Date-range filtering & range reset; toolbar px/cm calibration
 - Light / dark theme instant switching, persisted with your data
 - System-tray resident (show / reset stats / exit), always-on-top, single-instance guard
+- Multilingual UI: auto-matches the system language at launch (Chinese / English), one-click toolbar toggle, persisted with your data
 
 **Data & privacy:**
 - All data is stored only on your machine at `%APPDATA%\KeyClickCounter\keycount.json`

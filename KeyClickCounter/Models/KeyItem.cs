@@ -27,7 +27,8 @@ public class KeyItem : INotifyPropertyChanged
     /// <summary>稳定标识，同时作为持久化 JSON 的键。</summary>
     public string Id { get; }
 
-    public string DisplayName { get; }
+    /// <summary>键帽上的主标识；语言切换时可被 SetDisplayName 更新。</summary>
+    public string DisplayName { get; private set; }
 
     /// <summary>键帽上的第二标识（上档符号 / 小键盘功能名），可为空。</summary>
     public string? SubLabel { get; }
@@ -49,6 +50,14 @@ public class KeyItem : INotifyPropertyChanged
     public double CellHeight { get; }
 
     public bool HasSubLabel => !string.IsNullOrEmpty(SubLabel);
+
+    /// <summary>按当前界面语言更新键帽主标识（语言切换时调用）。</summary>
+    public void SetDisplayName(string name)
+    {
+        if (DisplayName == name) return;
+        DisplayName = name;
+        OnPropertyChanged(nameof(DisplayName));
+    }
 
     public double NameFontSize => IsMouse ? 13 : 11;
 

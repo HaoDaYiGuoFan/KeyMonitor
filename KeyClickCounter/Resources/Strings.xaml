@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- ================ 简体中文（默认语言，文件名为默认词典） ================ -->
+
+    <!-- 工具栏 -->
+    <sys:String x:Key="L.ResetStats">重置统计</sys:String>
+    <sys:String x:Key="L.HideToTray">隐藏到托盘</sys:String>
+    <sys:String x:Key="L.AlwaysOnTop">窗口置顶</sys:String>
+    <sys:String x:Key="L.DarkTheme">深色皮肤</sys:String>
+    <sys:String x:Key="L.DarkThemeTip">勾选=深色皮肤，取消=浅色皮肤</sys:String>
+    <sys:String x:Key="L.LangButton">English</sys:String>
+    <sys:String x:Key="L.LangTip">切换界面语言（中文 ⇄ English）</sys:String>
+    <sys:String x:Key="L.PxPerCmLabel">px/cm:</sys:String>
+    <sys:String x:Key="L.PxPerCmTip">像素/厘米换算系数，可按显示器实际 DPI 校准</sys:String>
+    <sys:String x:Key="L.RangeLabel">范围:</sys:String>
+    <sys:String x:Key="L.RangeStartTip">统计起始日期（默认：首次启动统计日期）</sys:String>
+    <sys:String x:Key="L.RangeSeparator">至</sys:String>
+    <sys:String x:Key="L.RangeEndTip">统计结束日期（默认：今天）</sys:String>
+    <sys:String x:Key="L.DefaultRange">默认范围</sys:String>
+    <sys:String x:Key="L.DefaultRangeTip">恢复为：首次启动日期 ~ 今天</sys:String>
+    <sys:String x:Key="L.TrayHint">最小化 / 关闭窗口会缩到托盘 · 双击托盘图标恢复</sys:String>
+
+    <!-- 鼠标分区标题 -->
+    <sys:String x:Key="L.MouseSectionTitle">鼠标按键</sys:String>
+
+    <!-- 代码生成文本：状态栏 / 实时行 / 弹窗 / 托盘 -->
+    <sys:String x:Key="L.HookInstallFailed">全局钩子安装失败，可能被安全软件拦截。</sys:String>
+    <sys:String x:Key="L.TrayTooltipFmt">KeyClickCounter · 合计 {0}</sys:String>
+    <sys:String x:Key="L.TrayShow">显示窗口</sys:String>
+    <sys:String x:Key="L.TrayReset">重置统计数据</sys:String>
+    <sys:String x:Key="L.TrayExit">退出程序</sys:String>
+    <sys:String x:Key="L.StatusRange">统计范围 {0} ~ {1}</sys:String>
+    <sys:String x:Key="L.StatusKeys">总按键 {0}</sys:String>
+    <sys:String x:Key="L.StatusMouse">总鼠标 {0}</sys:String>
+    <sys:String x:Key="L.StatusTotal">合计 {0}</sys:String>
+    <sys:String x:Key="L.StatusWheel">滚轮 {0} 格</sys:String>
+    <sys:String x:Key="L.StatusMove">移动 {0}</sys:String>
+    <sys:String x:Key="L.StatusRuntime">运行 {0}</sys:String>
+    <sys:String x:Key="L.StatusOther">其他键 {0}</sys:String>
+    <sys:String x:Key="L.LiveWheel">滚轮 {0:N0} 格 ≈ {1} 圈（{2} 格/圈）</sys:String>
+    <sys:String x:Key="L.LiveMove">光标移动 {0}（{1:N0} px）</sys:String>
+
+    <!-- 键帽文字：有中文惯用名的键才翻译，其余保持英文通用标注 -->
+    <sys:String x:Key="L.Key.MouseLeft">左键</sys:String>
+    <sys:String x:Key="L.Key.MouseRight">右键</sys:String>
+    <sys:String x:Key="L.Key.MouseMiddle">中键</sys:String>
+    <sys:String x:Key="L.Key.MouseX1">侧键1</sys:String>
+    <sys:String x:Key="L.Key.MouseX2">侧键2</sys:String>
+    <sys:String x:Key="L.Key.MouseWheel">滚轮</sys:String>
+    <sys:String x:Key="L.Key.Backspace">退格</sys:String>
+    <sys:String x:Key="L.Key.CapsLock">大写锁定</sys:String>
+    <sys:String x:Key="L.Key.Enter">回车</sys:String>
+    <sys:String x:Key="L.Key.Space">空格</sys:String>
+    <sys:String x:Key="L.Key.Menu">菜单</sys:String>
+    <sys:String x:Key="L.Key.Num">数字</sys:String>
+    <sys:String x:Key="L.Key.PrtSc">打印屏幕</sys:String>
+    <sys:String x:Key="L.Key.ScrLk">滚动锁定</sys:String>
+
+</ResourceDictionary>

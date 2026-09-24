@@ -53,6 +53,11 @@ public class KeyCountViewModel : INotifyPropertyChanged
 
     public ICommand DefaultRangeCommand { get; }
 
+    public ICommand ToggleLanguageCommand { get; }
+
+    /// <summary>当前界面语言键（zh-Hans / en）。</summary>
+    public string LanguageKey => LocalizationService.CurrentKey;
+
     public KeyCountViewModel()
     {
         Keys = KeyboardLayout.BuildKeyboardKeys();
@@ -69,6 +74,7 @@ public class KeyCountViewModel : INotifyPropertyChanged
 
         ResetCommand = new RelayCommand(_ => ResetAll());
         DefaultRangeCommand = new RelayCommand(_ => ResetRangeToDefault());
+        ToggleLanguageCommand = new RelayCommand(_ => LocalizationService.Toggle());
 
         // 高亮 200ms 自动熄灭
         _flashTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(33) };
@@ -301,6 +307,19 @@ public class KeyCountViewModel : INotifyPropertyChanged
         RecomputeDisplayed();
     }
 
+    /// <summary>工具栏一键中英切换（实际切换由 LocalizationService 完成，经 LanguageChanged 驱动界面刷新）。</summary>
+    public void ToggleLanguage() => LocalizationService.Toggle();
+
+    /// <summary>语言切换 / 启动后：按当前语言重绘键帽与鼠标键名。</summary>
+    public void RefreshKeyNames()
+    {
+        KeyboardLayout.ApplyLanguage(Keys);
+        KeyboardLayout.ApplyLanguage(MouseKeys);
+    }
+
+    /// <summary>语言切换后：按当前语言重建状态栏与实时行文本。</summary>
+    public void RefreshLanguageTexts() => RecomputeDisplayed();
+
     /// <summary>把今日未落盘增量并入今日分桶后一次性落盘（防止强杀进程丢失最后一次计数）。</summary>
     public StorageData BuildStorageData()
     {
@@ -311,6 +330,7 @@ public class KeyCountViewModel : INotifyPropertyChanged
             Version = 2,
             StartDate = _startDate.ToString("yyyy-MM-dd"),
             ThemeIsLight = _isDarkTheme ? 0 : 1,
+            Language = LocalizationService.CurrentKey,
             Days = _days.ToDictionary(
                 kv => kv.Key.ToString("yyyy-MM-dd"),
                 kv => new Dictionary<string, long>(kv.Value))
@@ -418,8 +438,10 @@ public class KeyCountViewModel : INotifyPropertyChanged
 
     private void RefreshLiveStatsText()
     {
-        _liveStatsText = $"滚轮 {TotalWheelNotches:N0} 格 ≈ {WheelRotationsText} 圈（{NotchesPerRevolution} 格/圈）"
-                       + $" · 光标移动 {DistanceText}（{TotalDistancePixels:N0} px）";
+        _liveStatsText = string.Format(LocalizationService.GetText("LiveWheel"),
+                              TotalWheelNotches.ToString("N0"), WheelRotationsText, NotchesPerRevolution)
+                       + " · " + string.Format(LocalizationService.GetText("LiveMove"),
+                              DistanceText, TotalDistancePixels.ToString("N0"));
         OnPropertyChanged(nameof(LiveStatsText));
     }
 
@@ -442,10 +464,18 @@ public class KeyCountViewModel : INotifyPropertyChanged
 
     private void RaiseTotals()
     {
-        _statusText = $"统计范围 {_rangeStart:yyyy-MM-dd} ~ {_rangeEnd:yyyy-MM-dd}"
-                      + $" · 总按键 {TotalKeys} · 总鼠标 {TotalMouse} · 合计 {Total}"
-                      + $" · 滚轮 {TotalWheelNotches:N0} 格 · 移动 {DistanceText} · 运行 {RunTimeText}"
-                      + (_otherCount > 0 ? $" · 其他键 {_otherCount}" : "");
+        _statusText = string.Join(" · ", new[]
+        {
+            string.Format(LocalizationService.GetText("StatusRange"), _rangeStart.ToString("yyyy-MM-dd"), _rangeEnd.ToString("yyyy-MM-dd")),
+            string.Format(LocalizationService.GetText("StatusKeys"), TotalKeys),
+            string.Format(LocalizationService.GetText("StatusMouse"), TotalMouse),
+            string.Format(LocalizationService.GetText("StatusTotal"), Total),
+            string.Format(LocalizationService.GetText("StatusWheel"), TotalWheelNotches.ToString("N0")),
+            string.Format(LocalizationService.GetText("StatusMove"), DistanceText),
+            string.Format(LocalizationService.GetText("StatusRuntime"), RunTimeText)
+        });
+        if (_otherCount > 0)
+            _statusText += " · " + string.Format(LocalizationService.GetText("StatusOther"), _otherCount.ToString("N0"));
         OnPropertyChanged(nameof(StatusText));
         OnPropertyChanged(nameof(TotalKeys));
         OnPropertyChanged(nameof(TotalMouse));

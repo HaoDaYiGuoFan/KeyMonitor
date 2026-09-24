@@ -8,6 +8,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- 主题字典在首位，运行时可整体替换实现皮肤切换 -->
                 <ResourceDictionary Source="Themes/Dark.xaml"/>
+                <!-- 语言字典：LocalizationService 按系统语言/手动切换动态替换；下标固定为 1 -->
+                <ResourceDictionary Source="Resources/Strings.xaml"/>
                 <ResourceDictionary Source="Resources/KeyboardLayout.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

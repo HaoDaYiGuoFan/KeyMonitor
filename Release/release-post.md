@@ -1,10 +1,10 @@
 # KeyClickCounter — GitHub Release 发布文案（中英双语，可直接粘贴）
 
-> 使用说明：在 GitHub → Releases → **Draft a new release** 中填写下方内容。
-> - Tag & 版本标题：`v1.0.0`
-> - Target：`master`（当前 d1a5880）
+> 使用说明：GitHub → Releases → **编辑现有 Release `KeyClickCounter-V1.0.0`**（2026-09-23 创建），正文粘贴下方对应语言的文案。
+> - Tag：`KeyClickCounter-V1.0.0`（已存在）
+> - Target：`master`（当前 774b2cb）
 > - 发布日期：2026-09-24
-> - 附件：上传 `KeyClickCounter-1.0.0-win-x64.zip`
+> - 附件：上传 `KeyClickCounter-1.0.0-win-x64.zip`（66,734,276 字节 ≈ 63.6 MB，**覆盖旧的 66,729,241 字节包**）
 
 ---
 
